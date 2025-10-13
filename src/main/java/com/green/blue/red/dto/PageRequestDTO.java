@@ -16,4 +16,5 @@ public class PageRequestDTO {// todo/list?page=3&size=25
 
     @Builder.Default
     private int size = 10;
+
 }

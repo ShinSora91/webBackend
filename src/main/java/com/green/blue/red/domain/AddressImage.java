@@ -9,11 +9,9 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductImage {
+public class AddressImage {
     private String fileName;
     private int ord;
     private String uuid;
-    public void setOrd(int ord){
-        this.ord = ord;
-    }
+    public void setOrd(int ord) { this.ord=ord; }
 }
