@@ -59,13 +59,14 @@ public class MainTest2 {
         resultMap.put("참", booleanListT);
         resultMap.put("거짓", booleanListF);
         System.out.println(resultMap);
-//
+
 //        funcList.forEach(i -> {
 //            randData.forEach(j -> {
 //                resultMap.computeIfAbsent("참", v -> new ArrayList<Boolean>());
 //                resultMap.computeIfAbsent("거짓", v -> new ArrayList<>(Boolean));
-//                resultMap.get("참").add(i.test(j));
-//                resultMap.get("거짓").add(i.test(j));
+//                boolean r = i.test(j);
+//                if(r) resultMap.get("참").add(r);
+//                else resultMap.get("거짓").add(r);
 //            });
 //        });
 //        log.info("최종결과=>{}", resultMap);
