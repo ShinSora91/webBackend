@@ -8,4 +8,7 @@ public interface ProductService {
     public PageResponseDTO<ProductDTO> getList(PageRequestDTO dto);
     Long register(ProductDTO dto);
     ProductDTO get(Long pno);
+    //10월 14일
+    void modify(ProductDTO dto);
+    void remove(Long pno);
 }

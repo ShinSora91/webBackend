@@ -1,9 +1,6 @@
 package com.green.blue.red.repository;
 
 import com.green.blue.red.domain.Product;
-import com.green.blue.red.domain.ProductImage;
-import com.green.blue.red.dto.NaDTO;
-import com.green.blue.red.dto.PageResponseDTO;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -99,50 +96,6 @@ public class ProductRepositoryTests {
         Product product = result.orElseThrow();
         log.info("{}",product);
         log.info("{}",product.getImageList());
-    }
-
-//    NaDTO toNaDTO(Product product){
-//        return NaDTO.builder()
-//                .pname(product.getPname())
-//                .price(product.getPrice())
-//                .pdesc(product.getPdesc())
-//                .pno(product.getPno())
-//                .build();
-//    }
-
-    @Test
-    public void testNaDTO(){
-        Long [] dtoPnoList = {11l,12l,13l,14l,15l};
-        List<NaDTO> naDTOList = new ArrayList<>();
-        // db에서 selectOne로 조회하여
-
-        for(int i=0; i<dtoPnoList.length; i++) {
-            Optional<Product> pr = repository.selectOne(dtoPnoList[i]);
-            if (pr.isPresent()) {
-                Product product = pr.get();
-                List<String> imageList = new ArrayList<>();
-                for (ProductImage j : product.getImageList()) imageList.add(j.getFileName());
-                NaDTO naDTO = NaDTO.builder()
-                        .pno(product.getPno())
-                        .pname(product.getPname())
-                        .pdesc(product.getPdesc())
-                        .price(product.getPrice())
-                        .build();
-                naDTOList.add(naDTO);
-            }
-        }
-
-//        Arrays.stream(dtoPnoList).forEach(i->{
-//            Product en = repository.selectOne(i).get();
-//            NaDTO.builder()
-//                    .pname(en.getPname())
-//                    .pdesc(en.getPdesc())
-//                    .price(en.getPrice())
-//                    .pno(en.getPno())
-//                    .fileNames(en.getImageList().stream().map(v->v.getFileName()).toList())
-//                    .build();
-//        });
-        log.info("naDtoList=> {}", naDTOList);
     }
 
     @Test
