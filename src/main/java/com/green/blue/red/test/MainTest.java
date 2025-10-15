@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 public class MainTest {
 
     public static void main(String[] args) {
-        Map<String,List<Integer>> map = new HashMap<>();
+        Map<String,List<String>> map = new HashMap<>();
         List<String> list = Arrays.asList("a","b","c","d","e");
         List<String> listNum = new ArrayList<>();
         List<String> list10 = new ArrayList<>();
@@ -40,23 +40,23 @@ public class MainTest {
              map.computeIfAbsent(i, j -> new ArrayList<>());
         });
 
-//        for(int i=0; i<5; i++){
-//            map.get("a").add(String.valueOf(i+1));
-//            map.get("b").add(String.valueOf((i+1)*10));
-//            map.get("c").add(String.valueOf((i+1)*3));
-//            map.get("d").add(String.valueOf((i+1)*4));
-//            map.get("e").add(String.valueOf((i+1)*8));
-//        }
+        for(int i=0; i<5; i++){
+            map.get("a").add(String.valueOf(i+1));
+            map.get("b").add(String.valueOf((i+1)*10));
+            map.get("c").add(String.valueOf((i+1)*3));
+            map.get("d").add(String.valueOf((i+1)*4));
+            map.get("e").add(String.valueOf((i+1)*8));
+        }
 
-        IntStream.rangeClosed(1,5).boxed().forEach(i -> {
-            map.get("a").add(i);
-            map.get("b").add(i*10);
-            map.get("c").add(i * 3);
-            map.get("d").add(i * 4);
-            map.get("e").add(i * 8);
-        });
-        List<Integer> list1 = IntStream.rangeClosed(1, 5).map(i -> i * 10).boxed().toList();
-        System.out.println(list1);
+//        IntStream.rangeClosed(1,5).boxed().forEach(i -> {
+//            map.get("a").add(i);
+//            map.get("b").add(i*10);
+//            map.get("c").add(i * 3);
+//            map.get("d").add(i * 4);
+//            map.get("e").add(i * 8);
+//        });
+//        List<Integer> list1 = IntStream.rangeClosed(1, 5).map(i -> i * 10).boxed().toList();
+//        System.out.println(list1);
 
 
         System.out.println(map);
