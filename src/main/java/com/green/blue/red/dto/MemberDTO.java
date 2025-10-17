@@ -1,35 +1,44 @@
 package com.green.blue.red.dto;
 
-import com.green.blue.red.domain.MemberRole;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
 import lombok.*;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Getter
-@ToString (exclude = "memberRoleList")
-public class MemberDTO {
-
-    @Id
+@Setter
+@ToString
+//인증(authentication), 비밀번호 인증, 권한(Authority), 관리자, admin 인가
+public class MemberDTO extends User {
     private String email;
     private String pw;
     private String nickname;
     private boolean social;
+    private List<String> roleNames = new ArrayList<>();
 
-    @ElementCollection(fetch = FetchType.LAZY)
-    @Builder.Default
-    private List<MemberRole> memberRoleList = new ArrayList<>();
+    public MemberDTO(String email, String pw, String nickname, boolean social,
+                     List<String> roleNames){
+        super(email,pw, roleNames.stream().map(str ->
+                new SimpleGrantedAuthority("ROLE_"+str)).toList());
+        this.email=email;
+        this.pw=pw;
+        this.nickname=nickname;
+        this.social=social;
+        this.roleNames=roleNames;
+    }
 
-    public void addRole(MemberRole memberRole){memberRoleList.add(memberRole);}
-    public void clearRole(){memberRoleList.clear();}
-    public void changeNickname(String nickname){this.nickname=nickname;}
-    public void changePw(String pw){this.pw=pw;}
-    public void changeSocial(boolean social){this.social=social;}
+    public Map<String, Object> getClaims(){
+        Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("email", email);
+        dataMap.put("pw", pw);
+        dataMap.put("nickname", nickname);
+        dataMap.put("social", social);
+        dataMap.put("roleNames", roleNames);
+        return dataMap;
+    }
 }
