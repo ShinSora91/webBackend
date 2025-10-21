@@ -60,4 +60,9 @@ public class MemberRepositoryTests {
         member.addRole(MemberRole.ADMIN);
         memberRepository.save(member);
     }
+
+    @Test
+    public void deleteMember() {
+        memberRepository.deleteById("memo0754@naver.com");
+    }
 }
