@@ -12,13 +12,8 @@ public class Main5 {
         return Integer.parseInt(str[idx].substring(str[idx].length()-1));
     }
 
-    public static String strSum(String[] str, int idx){
-        String s = "";
-        for(int i=0; i<str.length; i++){
-            s += str[idx].substring(0,str[idx].length()-1);
-        }
-
-        return s;
+    public static String strSum(String[] str, int idx){//문자열 왼쪽부분을 자른다
+        return str[idx].substring(0,str[idx].length()-1);
     }
 
     public static void main(String[] args) {
@@ -32,23 +27,23 @@ public class Main5 {
 //        {"a_2" : "믿음필승기현"}
 //        {"a_3" : 5+9+2}
 //        {"a_4" : 7+3+8}
-        Map<String, String> map = new HashMap<>();
-
-        String stra1 = "";
-        String stra2 = "";
-        int num1 = 0;
-        int num2 = 0;
-        for(int i=0; i<str.length; i++) {
-            stra1 += str[i][0].substring(0,str[i][0].length()-1);
-            stra2 += str[i][1].substring(0,str[i][1].length()-1);
-            num1 += Integer.parseInt(str[i][0].substring(str[i][0].length()-1));
-            num2 += Integer.parseInt(str[i][1].substring(str[i][1].length()-1));
-        }
-        map.put("a_1", stra1);
-        map.put("a_2", stra2);
-        map.put("a_3", ""+num1);
-        map.put("a_4", ""+num2);
-        log.info("map:{}", map);
+//        Map<String, String> map = new HashMap<>();
+//
+//        String stra1 = "";
+//        String stra2 = "";
+//        int num1 = 0;
+//        int num2 = 0;
+//        for(int i=0; i<str.length; i++) {
+//            stra1 += str[i][0].substring(0,str[i][0].length()-1);
+//            stra2 += str[i][1].substring(0,str[i][1].length()-1);
+//            num1 += Integer.parseInt(str[i][0].substring(str[i][0].length()-1));
+//            num2 += Integer.parseInt(str[i][1].substring(str[i][1].length()-1));
+//        }
+//        map.put("a_1", stra1);
+//        map.put("a_2", stra2);
+//        map.put("a_3", ""+num1);
+//        map.put("a_4", ""+num2);
+//        log.info("map:{}", map);
 
         //---------------------------------------------
 
@@ -62,15 +57,35 @@ public class Main5 {
         }
         log.info("map2:{}",map2);
 
+//        Map<String, String> map3 = new HashMap<>();
+//
+//        for(int i=0; i<4; i++) map3.put("a_"+(i+1), "");
+//        for(int i=0; i<3; i++) { //객체
+//            for(int j=0; j<2; j++){ //사랑5
+//                String key = "a_"+(j+1);
+////                log.info("i={}, j={}, data={}, key={}", i,j,str[i][j], key);
+//                map3.put(key, map3.get(key)+strSum(str[i], j));
+//            }
+//        }
+//        map3.put("a_3", ""+map2.get("a_1"));
+//        map3.put("a_4", ""+map2.get("a_2"));
+//        log.info("map3:{}",map3);
+
+
+        //-----------------------------------------------------------------------------
+
+
         Map<String, String> map3 = new HashMap<>();
 
-        String st = "";
-        for(int i=0; i<2; i++) map3.put("a_"+(i+1), "");
-        for(int i=0; i<3; i++) {
-            for(int j=0; j<2; j++){
-                String key = "a_"+(j+1);
-                map3.put(key, map.get(key)+strSum(str[i], j));
+        for(int j=0; j<2; j++) { //객체
+            String resultStr = "";
+            int resultNum = 0;
+            for(int i=0; i<3; i++){ //사랑5
+                resultStr += strSum(str[i],j);
+                resultNum += numSum(str[i],j);
             }
+            map3.put("a_" + (j + 1), resultStr);
+            map3.put("a_" + (j + 3), resultNum + "");
         }
         log.info("map3:{}",map3);
     }
