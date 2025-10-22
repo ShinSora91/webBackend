@@ -2,18 +2,12 @@ package com.green.blue.red.service;
 
 import com.green.blue.red.dto.PageRequestDTO;
 import com.green.blue.red.dto.PageResponseDTO;
-import com.green.blue.red.dto.TodoDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.sql.Array;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @SpringBootTest
 @Slf4j
