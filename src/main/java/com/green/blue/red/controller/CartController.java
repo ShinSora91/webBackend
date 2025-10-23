@@ -19,7 +19,7 @@ public class CartController {
 
     private final CartService cartService;
 
-    @PreAuthorize("#itemDTO.emial == authentication.name")
+    @PreAuthorize("#itemDTO.email == authentication.name")
     @PostMapping("/change")
     public List<CartItemListDTO> changeCart(@RequestBody CartItemDTO itemDTO){
         log.info("itemDTO : {}",itemDTO);

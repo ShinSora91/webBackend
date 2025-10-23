@@ -41,10 +41,23 @@ public class MapTestFinal {
         map2.put("b",new ArrayList<>());
         map2.put("c",new ArrayList<>());
         int [] arr = {5,10,15,30,25};
+        List<Integer> numList1 = new ArrayList<>();
+        List<Integer> numList2 = new ArrayList<>();
+        List<Integer> numList3 = new ArrayList<>();
         for(int i=0; i<5; i++){
-            map2.get("a").add(i+1);
-            map2.get("b").add((i+1)*2);
-            map2.get("c").add(arr[i]);
+
+            numList1.add(i+1);
+            numList2.add((i+1)*2);
+            numList3.add(arr[i]);
+            for(int j=0; j<3; j++){
+                map2.put(key[j], numList1);
+                map2.put(key[j], numList2);
+                map2.put(key[j], numList3);
+//                map2.get(key[j]).add(i+1);
+//                map2.get(key[j]).add((i+1)*2);
+//                map2.get(key[j]).add(arr[i]);
+            }
+
         }
         log.info("{}", map2);
     }
